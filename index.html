@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Swati ❤️</title>
+
+<style>
+/* ================= GLOBAL ================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ================= FLOATING HEARTS ================= */
+.heart {
+  position: absolute;
+  font-size: 20px;
+  color: rgba(255,255,255,0.7);
+  animation: floatUp 8s linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) scale(0.8);
+    opacity: 0;
+  }
+  20% { opacity: 1; }
+  100% {
+    transform: translateY(-10vh) scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* ================= CARD ================= */
+.card {
+  background: white;
+  padding: 35px;
+  border-radius: 25px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+  animation: popIn 1s ease;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+h1 {
+  color: #ff4d6d;
+  margin-bottom: 5px;
+}
+
+h2 {
+  margin-top: 20px;
+}
+
+.quote {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* ================= BUTTONS ================= */
+.buttons {
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  position: relative;
+}
+
+button {
+  flex: 1;
+  padding: 14px;
+  border-radius: 40px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#yesBtn {
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+  color: white;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,77,109,0.6); }
+  70% { box-shadow: 0 0 0 15px rgba(255,77,109,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,77,109,0); }
+}
+
+#noBtn {
+  background: #adb5bd;
+  color: white;
+}
+
+button:hover {
+  transform: scale(1.08);
+}
+
+/* ================= MESSAGE ================= */
+#message {
+  margin-top: 20px;
+  font-size: 18px;
+  min-height: 28px;
+  color: #ff4d6d;
+}
+
+/* ================= SHAKE ================= */
+.shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+/* ================= FINAL SURPRISE ================= */
+.surprise {
+  font-size: 22px;
+  color: #ff4d6d;
+  animation: lovePop 0.8s ease;
+}
+
+@keyframes lovePop {
+  0% { transform: scale(0); }
+  80% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 480px) {
+  h2 { font-size: 20px; }
+  button { font-size: 16px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating Hearts -->
+<script>
+  for (let i = 0; i < 25; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+    heart.style.fontSize = 14 + Math.random() * 20 + "px";
+    document.body.appendChild(heart);
+  }
+</script>
+
+<div class="card">
+  <h1>Swati 💖</h1>
+  <p class="quote">"You are the reason my heart smiles every day."</p>
+  <h2>Will you be my Valentine? 🌹</h2>
+
+  <div class="buttons">
+    <button id="yesBtn">Yes 💘</button>
+    <button id="noBtn">No 😢</button>
+  </div>
+
+  <div id="message"></div>
+</div>
+
+<script>
+let yesCount = 0;
+let noCount = 0;
+
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const msg = document.getElementById("message");
+const card = document.querySelector(".card");
+
+const noTexts = [
+  "Really? 🥺",
+  "That hurts 💔",
+  "Think again 😢",
+  "My heart is shaking 😭",
+  "No is disabled now 😌"
+];
+
+yesBtn.addEventListener("click", () => {
+  yesCount++;
+
+  if (yesCount <= 5) {
+    const x = Math.random() * 150 - 75;
+    const y = Math.random() * 150 - 75;
+    yesBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+    card.classList.add("shake");
+    setTimeout(() => card.classList.remove("shake"), 400);
+
+    msg.textContent = "Not so easy 😏";
+
+    if (yesCount === 3) {
+      yesBtn.disabled = true;
+      msg.textContent = "Button needs a break 😜";
+      setTimeout(() => yesBtn.disabled = false, 900);
+    }
+
+    if (yesCount === 5) {
+      yesBtn.style.transform = "none";
+      msg.textContent = "Okay… now click properly ❤️";
+    }
+  } else {
+    document.querySelector(".buttons").style.display = "none";
+    msg.innerHTML = `
+      <div class="surprise">
+        💖 YAYYYY!!! 💖<br><br>
+        You just made me the luckiest person alive 🌍<br>
+        Happy Valentine’s Day, Swati 🌹✨
+      </div>
+    `;
+  }
+});
+
+noBtn.addEventListener("click", () => {
+  card.classList.add("shake");
+  setTimeout(() => card.classList.remove("shake"), 400);
+
+  if (noCount < noTexts.length) {
+    msg.textContent = noTexts[noCount];
+    noCount++;
+  } else {
+    noBtn.disabled = true;
+    noBtn.style.opacity = "0.4";
+    msg.textContent = "No is officially retired 😌❤️";
+  }
+});
+</script>
+
+<!-- OPTIONAL MUSIC -->
+<!--
+<audio autoplay loop>
+  <source src="romantic.mp3" type="audio/mpeg">
+</audio>
+-->
+
+</body>
+</html>
